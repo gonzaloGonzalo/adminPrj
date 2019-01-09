@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+    <title>Lista materia prima</title>
+</h:head>
+
+<h:body>
+    <h:form id="form">
+        <p:growl id="msgs" showDetail="true" />
+        <p:dataTable var="m" value="#{materiaPrimaView.listaMateriaPrima}">
+            <p:column headerText="Codigo">
+                <h:outputText value="#{m.codigo}" />
+            </p:column>
+            <p:column headerText="Descripcion">
+                <h:outputText value="#{m.descripcion}" />
+            </p:column>
+            <p:column headerText="Listo Precio IVA">
+                <h:outputText value="#{m.listaPrecioIva}" />
+            </p:column>
+            <p:column headerText="KG por bulto">
+                <h:outputText value="#{m.kgPorBulto}" />
+            </p:column>
+            <p:column headerText="Precio por KG">
+                <h:outputText value="#{m.precioPorKg}" />
+            </p:column>
+            <p:column headerText="Proveedor">
+                <h:outputText value="#{m.proveedor}" />
+            </p:column>
+            <p:column headerText="Codigo Proveedor">
+                <h:outputText value="#{m.codigoProveedor}" />
+            </p:column>
+            <p:column headerText="Precio por bulto de lista">
+                <h:outputText value="#{m.precioPorBultoDeLista}" />
+            </p:column>
+        </p:dataTable>
+        <p:commandButton
+                value="#{msgs['Agregar receta']}"
+                ajax="false"
+                action="ingresarMateriaPrima.xhmtl?faces-redirect=true"/>
+    </h:form>
+
+</h:body>
+</html>

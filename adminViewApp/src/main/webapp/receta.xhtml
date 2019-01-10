@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+    <title>Lista materia prima</title>
+</h:head>
+<h:body>
+    <h:form id="form">
+        <p:growl id="msgs" showDetail="true" />
+        <p:dataTable var="m" value="#{recetaView.listaReceta}">
+            <p:column headerText="Nombre">
+                <h:outputText value="#{m.nombre}" />
+            </p:column>
+        </p:dataTable>
+        <p:commandButton value="Agregar" type="button" onclick="PF('detail').show();" />
+        <p:commandButton
+                value="Volver"
+                ajax="false"
+                action="inicio.xhmtl?faces-redirect=true"/>
+    </h:form>
+    <p:dialog id="detail"  header="Agregar Receta" widgetVar="detail">
+        <h:form>
+            <table>
+                <tr>
+                    <td>Nombre :</td>
+                    <td>
+                        <h:inputText size = "10"
+                                     value = "#{recetaView.receta.nombre}" />
+                    </td>
+                </tr>
+                <tr>
+                    <td> </td>
+                    <td>
+                        <h:commandButton value = "Agregar receta"
+                                         action = "#{recetaView.insertarReceta}" />
+                    </td>
+                </tr>
+            </table>
+        </h:form>
+    </p:dialog>
+</h:body>
+</html>

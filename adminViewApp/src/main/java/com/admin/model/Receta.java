@@ -6,6 +6,7 @@ public class Receta {
 
     private long idReceta;
     private List<MateriaPrima> ingredientes;
+    private String nombre;
 
     public long getIdReceta() {
         return idReceta;
@@ -21,5 +22,13 @@ public class Receta {
 
     public void setIngredientes(List<MateriaPrima> ingredientes) {
         this.ingredientes = ingredientes;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 }

@@ -10,6 +10,8 @@ public class Receta {
     @GeneratedValue(strategy= GenerationType.SEQUENCE)
     private long idReceta;
 
+    private String nombre;
+
     @OneToMany
     private List<MateriaPrima> ingredientes;
 
@@ -19,6 +21,14 @@ public class Receta {
 
     public void setIdReceta(long idReceta) {
         this.idReceta = idReceta;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public List<MateriaPrima> getIngredientes() {

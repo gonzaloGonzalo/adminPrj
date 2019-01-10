@@ -5,16 +5,23 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets">
-
 <h:head>
-    <title>Ingresar materia prima</title>
+    <title>Inicio</title>
 </h:head>
 <h:body>
-    <h:form id="form2">
+    <h:form>
         <p:commandButton
-                value="#{msgs['Agregar receta']}"
+                value="Materia Prima"
                 ajax="false"
                 action="materiaPrima.xhmtl?faces-redirect=true"/>
+        <p:commandButton
+                value="Producto"
+                ajax="false"
+                action="producto.xhmtl?faces-redirect=true"/>
+        <p:commandButton
+                value="Receta"
+                ajax="false"
+                action="receta.xhmtl?faces-redirect=true"/>
     </h:form>
 </h:body>
 </html>

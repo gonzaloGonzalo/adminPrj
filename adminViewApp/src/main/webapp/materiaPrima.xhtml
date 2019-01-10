@@ -5,11 +5,9 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets">
-
 <h:head>
     <title>Lista materia prima</title>
 </h:head>
-
 <h:body>
     <h:form id="form">
         <p:growl id="msgs" showDetail="true" />
@@ -20,7 +18,7 @@
             <p:column headerText="Descripcion">
                 <h:outputText value="#{m.descripcion}" />
             </p:column>
-            <p:column headerText="Listo Precio IVA">
+            <p:column headerText="Lista Precio IVA">
                 <h:outputText value="#{m.listaPrecioIva}" />
             </p:column>
             <p:column headerText="KG por bulto">
@@ -39,11 +37,77 @@
                 <h:outputText value="#{m.precioPorBultoDeLista}" />
             </p:column>
         </p:dataTable>
-        <p:commandButton
-                value="#{msgs['Agregar receta']}"
-                ajax="false"
-                action="ingresarMateriaPrima.xhmtl?faces-redirect=true"/>
+        <p:commandButton value="Agregar" type="button" onclick="PF('detail').show();" />
+        <p:dialog id="detail"  header="Agregar Materia prima" widgetVar="detail">
+            <h:form>
+                <table>
+                    <tr>
+                        <td>Codigo :</td>
+                        <td>
+                            <h:inputText size = "10"
+                                         value = "#{materiaPrimaView.materiaPrima.codigo}" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Descripcion :</td>
+                        <td>
+                            <h:inputText size = "20"
+                                         value = "#{materiaPrimaView.materiaPrima.descripcion}" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Lista Precio IVA :</td>
+                        <td>
+                            <h:inputText size = "5"
+                                         value = "#{materiaPrimaView.materiaPrima.listaPrecioIva}" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>KG por bulto :</td>
+                        <td>
+                            <h:inputText size = "5"
+                                         value = "#{materiaPrimaView.materiaPrima.kgPorBulto}" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Precio por KG :</td>
+                        <td>
+                            <h:inputText size = "5"
+                                         value = "#{materiaPrimaView.materiaPrima.precioPorKg}" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Proveedor :</td>
+                        <td>
+                            <h:inputText size = "5"
+                                         value = "#{materiaPrimaView.materiaPrima.proveedor}" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Codigo proveedor :</td>
+                        <td>
+                            <h:inputText size = "5"
+                                         value = "#{materiaPrimaView.materiaPrima.codigoProveedor}" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Precio por bulto de lista :</td>
+                        <td>
+                            <h:inputText size = "5"
+                                         value = "#{materiaPrimaView.materiaPrima.precioPorBultoDeLista}" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td> </td>
+                        <td>
+                            <h:commandButton value = "Agregar materia prima"
+                                             action = "#{materiaPrimaView.insertarMateriaPrima}" />
+                        </td>
+                    </tr>
+                </table>
+            </h:form>
+        </p:dialog>
+        <!---/p:dialog-->
     </h:form>
-
 </h:body>
 </html>

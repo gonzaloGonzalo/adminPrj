@@ -15,14 +15,16 @@ public class MateriaPrimaView {
     private List<MateriaPrima> listaMateriaPrima;
     @ManagedProperty(value="#{materiaPrimaServ}")
     private MateriaPrimaService materiaPrimaService;
+    private MateriaPrima materiaPrima;
 
     @PostConstruct
     public void init(){
+        materiaPrima = new MateriaPrima();
         listaMateriaPrima = materiaPrimaService.obtenerMateriaPrima();
     }
 
-    public void insertarMateriaPrima(MateriaPrima materiaPrima){
-
+    public void insertarMateriaPrima(){
+        materiaPrimaService.insertarMateriaPrima(materiaPrima);
     }
 
     public List<MateriaPrima> getListaMateriaPrima() {
@@ -39,5 +41,13 @@ public class MateriaPrimaView {
 
     public void setMateriaPrimaService(MateriaPrimaService materiaPrimaService) {
         this.materiaPrimaService = materiaPrimaService;
+    }
+
+    public MateriaPrima getMateriaPrima() {
+        return materiaPrima;
+    }
+
+    public void setMateriaPrima(MateriaPrima materiaPrima) {
+        this.materiaPrima = materiaPrima;
     }
 }

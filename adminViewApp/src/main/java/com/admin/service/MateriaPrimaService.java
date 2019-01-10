@@ -8,6 +8,8 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.StringHttpMessageConverter;
+import org.springframework.http.converter.json.MappingJacksonHttpMessageConverter;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
@@ -15,26 +17,29 @@ import org.springframework.web.client.RestTemplate;
 import javax.faces.bean.ManagedBean;
 import java.util.Collections;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @ManagedBean(name="materiaPrimaServ")
 public class MateriaPrimaService{
 
     public long insertarMateriaPrima(MateriaPrima materiaPrima){
          try{
-             HttpHeaders headers = new HttpHeaders();
-             headers.setContentType(MediaType.APPLICATION_JSON);
-             final String uri = "http://localhost:8383/api/control/materiaPrima";
-             RestTemplate restTemplate = new RestTemplate();
-             MultiValueMap<String, Object> map = new LinkedMultiValueMap<String, Object>();
-             map.add("materiaPrima", materiaPrima);
-             HttpEntity<MultiValueMap<String, Object>> httpEntity =
-                     new HttpEntity<MultiValueMap<String, Object>>(map, headers);
 
-             MateriaPrima res = restTemplate.postForObject(uri, httpEntity, MateriaPrima.class);
-             return res.getIdMateriaPrima();
+             final String uri = "http://localhost:8383/api/control/materiaPrima";
+
+             MultiValueMap<String, String> headers = new LinkedMultiValueMap<String, String>();
+             headers.add("Content-Type", "application/json");
+
+             RestTemplate restTemplate = new RestTemplate();
+             restTemplate.getMessageConverters().add(new MappingJacksonHttpMessageConverter());
+
+             HttpEntity<MateriaPrima> request = new HttpEntity<MateriaPrima>(materiaPrima, headers);
+
+             restTemplate.postForObject(uri, request, Boolean.class);
          }
          catch (Exception ex) {
-
+             Logger.getAnonymousLogger().log(Level.ALL, ex.getMessage());
          }
          return -1L;
     }

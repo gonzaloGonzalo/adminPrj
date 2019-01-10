@@ -85,4 +85,9 @@ public class MateriaPrima {
     public void setPrecioPorBultoDeLista(float precioPorBultoDeLista) {
         this.precioPorBultoDeLista = precioPorBultoDeLista;
     }
+
+    @Override
+    public String toString() {
+        return this.descripcion;
+    }
 }
